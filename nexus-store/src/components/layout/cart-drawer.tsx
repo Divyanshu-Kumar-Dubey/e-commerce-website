@@ -4,9 +4,16 @@ import { useStore } from "@/lib/store-context";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export function CartDrawer() {
   const { cart, isCartOpen, setIsCartOpen, removeFromCart, updateQuantity, cartTotal } = useStore();
+  const router = useRouter();
+
+  const handleCheckout = () => {
+    setIsCartOpen(false);
+    router.push("/checkout");
+  };
 
   return (
     <AnimatePresence>
@@ -89,7 +96,10 @@ export function CartDrawer() {
                   <span className="text-muted-foreground">Subtotal</span>
                   <span className="font-bold text-xl">${cartTotal.toLocaleString()}</span>
                 </div>
-                <button className="w-full py-4 bg-foreground text-background rounded-xl font-medium hover:scale-[1.02] transition-transform">
+                <button 
+                  onClick={handleCheckout}
+                  className="w-full py-4 bg-foreground text-background rounded-xl font-medium hover:scale-[1.02] transition-transform"
+                >
                   Proceed to Checkout
                 </button>
               </div>
