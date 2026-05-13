@@ -4,5 +4,13 @@
       "anonymous": true,
       "emailPassword": true
     }
+  },
+  "hosting": {
+    "source": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }
