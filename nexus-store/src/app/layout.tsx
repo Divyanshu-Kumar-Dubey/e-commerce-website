@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/lib/auth-context";
 import { StoreProvider } from "@/lib/store-context";
 import { CartDrawer } from "@/components/layout/cart-drawer";
+import { Footer } from "@/components/layout/footer";
+import { WhatsAppButton } from "@/components/layout/whatsapp-button";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -41,7 +43,11 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              {children}
+              <div className="flex-1 flex flex-col">
+                {children}
+              </div>
+              <Footer />
+              <WhatsAppButton />
               <CartDrawer />
             </ThemeProvider>
           </StoreProvider>
