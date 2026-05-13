@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { ShoppingBag, Moon, Sun, Search, Menu, UserCircle, LogOut } from "lucide-react";
+import { ShoppingBag, Moon, Sun, Search, Menu, UserCircle, LogOut, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth-context";
+import { useStore } from "@/lib/store-context";
 import Image from "next/image";
 
 export function Navbar() {
@@ -12,6 +13,10 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { user, signInWithGoogle, logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
+  const { cart, wishlist, setIsCartOpen } = useStore();
+
+  const cartItemsCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const wishlistCount = wishlist.length;
 
   // Avoid hydration mismatch
   useEffect(() => setMounted(true), []);
@@ -43,9 +48,27 @@ export function Navbar() {
             {mounted && theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
 
-          <button className="p-2 text-muted-foreground hover:text-foreground transition-colors relative">
+          <button 
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors relative"
+          >
+            <Heart className="w-5 h-5" />
+            {wishlistCount > 0 && (
+              <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] flex items-center justify-center font-bold rounded-full">
+                {wishlistCount}
+              </span>
+            )}
+          </button>
+
+          <button 
+            onClick={() => setIsCartOpen(true)}
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors relative"
+          >
             <ShoppingBag className="w-5 h-5" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-accent rounded-full"></span>
+            {cartItemsCount > 0 && (
+              <span className="absolute top-0 right-0 w-4 h-4 bg-accent text-white text-[10px] flex items-center justify-center font-bold rounded-full">
+                {cartItemsCount}
+              </span>
+            )}
           </button>
 
           {/* User Auth */}

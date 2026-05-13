@@ -3,6 +3,8 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/lib/auth-context";
+import { StoreProvider } from "@/lib/store-context";
+import { CartDrawer } from "@/components/layout/cart-drawer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,14 +34,17 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning className="min-h-screen flex flex-col font-sans antialiased bg-background text-foreground transition-colors duration-300">
         <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-          </ThemeProvider>
+          <StoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+              <CartDrawer />
+            </ThemeProvider>
+          </StoreProvider>
         </AuthProvider>
       </body>
     </html>
