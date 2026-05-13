@@ -73,40 +73,39 @@ export function Navbar() {
 
           {/* User Auth */}
           {user ? (
-            <div className="relative">
-              <button 
-                onClick={() => setShowDropdown(!showDropdown)}
-                className="w-8 h-8 rounded-full overflow-hidden border border-border/50 ml-2"
-              >
+            <div className="relative group ml-2">
+              <button className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                 {user.photoURL ? (
-                  <Image src={user.photoURL} alt="User" width={32} height={32} />
+                  <Image 
+                    src={user.photoURL} 
+                    alt="User" 
+                    width={32} 
+                    height={32} 
+                    className="rounded-full border border-border"
+                  />
                 ) : (
-                  <div className="w-full h-full bg-primary flex items-center justify-center text-primary-foreground text-xs">
-                    {user.email?.charAt(0).toUpperCase()}
-                  </div>
+                  <UserCircle className="w-8 h-8 text-muted-foreground" />
                 )}
               </button>
-
-              {showDropdown && (
-                <div className="absolute right-0 mt-2 w-48 glass-card rounded-xl py-2 shadow-2xl border border-border/50 flex flex-col">
-                  <div className="px-4 py-2 border-b border-border/50 mb-1">
-                    <p className="text-sm font-medium truncate">{user.displayName || 'User'}</p>
-                    <p className="text-xs text-muted-foreground truncate">{user.email}</p>
-                  </div>
-                  <button className="text-left px-4 py-2 text-sm hover:bg-secondary transition-colors">
-                    Dashboard
-                  </button>
-                  <button 
-                    onClick={() => {
-                      logout();
-                      setShowDropdown(false);
-                    }}
-                    className="text-left px-4 py-2 text-sm text-destructive hover:bg-destructive/10 transition-colors flex items-center gap-2"
-                  >
-                    <LogOut className="w-4 h-4" /> Sign Out
-                  </button>
+              
+              <div className="absolute right-0 mt-2 w-48 glass-card rounded-xl py-2 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <div className="px-4 py-2 border-b border-border/50 mb-2">
+                  <p className="text-sm font-medium truncate">{user.displayName || 'User'}</p>
+                  <p className="text-xs text-muted-foreground truncate">{user.email}</p>
                 </div>
-              )}
+                <Link href="/admin">
+                  <button className="w-full text-left px-4 py-2 text-sm text-foreground hover:bg-secondary transition-colors">
+                    Admin Dashboard
+                  </button>
+                </Link>
+                <button 
+                  onClick={() => logout()}
+                  className="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-500/10 transition-colors flex items-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </button>
+              </div>
             </div>
           ) : (
             <button 
