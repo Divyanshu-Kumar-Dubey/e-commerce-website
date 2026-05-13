@@ -5,45 +5,41 @@ import Image from "next/image";
 
 export function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen flex flex-col justify-center overflow-hidden pt-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="/hero.png" 
-          alt="Premium Tech Setup" 
+          src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" 
+          alt="Hero Background" 
           fill
           priority
           className="object-cover"
+          unoptimized
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 to-background dark:from-black/30 dark:to-background z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/90 dark:from-black/50 dark:to-[#050505] z-10" />
       </div>
 
-      <div className="container relative z-20 mx-auto px-6 pt-20 text-center">
+      <div className="container relative z-20 mx-auto px-6 max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl mx-auto"
+          className="max-w-2xl"
         >
-          <p className="text-accent dark:text-ring font-medium tracking-widest uppercase mb-4 text-sm drop-shadow-md">
-            The Future of Commerce
+          <p className="text-accent dark:text-[#4f46e5] font-semibold tracking-[0.2em] uppercase mb-4 text-sm drop-shadow-md">
+            Redefining Retail
           </p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-xl text-foreground">
-            Experience <br className="hidden md:block"/>
-            <span className="text-gradient drop-shadow-2xl">Absolute Premium.</span>
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 leading-[1.1] text-white">
+            Elevate Your<br />
+            <span className="text-gradient drop-shadow-2xl">Everyday.</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto drop-shadow-lg">
-            Discover a curated collection of state-of-the-art tech, high-end fashion, and luxury home essentials designed to elevate your everyday life.
+          <p className="text-lg md:text-xl text-zinc-300 mb-10 max-w-xl font-light">
+            Discover the pinnacle of modern technology, curated fashion, and premium home essentials.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-8 py-4 bg-primary text-primary-foreground font-medium rounded-full shadow-lg shadow-primary/25 hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
-              Shop Collection
-            </button>
-            <button className="px-8 py-4 bg-secondary text-secondary-foreground font-medium rounded-full shadow-lg hover:bg-secondary/80 hover:scale-105 transition-transform duration-300 w-full sm:w-auto">
-              View Lookbook
-            </button>
-          </div>
+          <button className="px-8 py-4 bg-white text-black dark:bg-[#4f46e5] dark:text-white font-medium rounded-full shadow-xl hover:scale-105 transition-transform duration-300">
+            Explore Collection
+          </button>
         </motion.div>
       </div>
     </section>
