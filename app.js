@@ -11,13 +11,41 @@ const products = [
 
 let cartCount = 0;
 
+// Theme Initialization
+const initTheme = () => {
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+};
+
+window.toggleTheme = () => {
+  const currentTheme = document.documentElement.getAttribute('data-theme');
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
+  updateThemeIcon(newTheme);
+};
+
+const updateThemeIcon = (theme) => {
+  const icon = document.getElementById('themeIcon');
+  if (!icon) return;
+  if (theme === 'light') {
+    // Sun icon for light mode (clicking changes to dark)
+    icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  } else {
+    // Moon icon for dark mode
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  }
+};
+
 const renderStars = (rating) => {
   return Array(5).fill(0).map((_, i) => i < Math.floor(rating) ? '★' : '☆').join('');
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const grid = document.getElementById('productsGrid');
+  initTheme();
   
+  const grid = document.getElementById('productsGrid');
   if (grid) {
     grid.innerHTML = products.map((p, i) => `
       <div class="product-card fade-up" style="transition-delay: ${(i % 4) * 0.1}s">
@@ -64,7 +92,7 @@ window.addToCart = (e) => {
   
   // Toast
   const toast = document.createElement('div');
-  toast.style.cssText = "position:fixed;bottom:2rem;right:2rem;background:#18181b;color:#fff;padding:1rem 2rem;border-radius:100px;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,0.15);font-family:'Inter',sans-serif;font-weight:500;transform:translateY(100px);opacity:0;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);";
+  toast.style.cssText = "position:fixed;bottom:2rem;right:2rem;background:var(--color-primary);color:var(--color-light);padding:1rem 2rem;border-radius:100px;z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,0.15);font-family:'Inter',sans-serif;font-weight:500;transform:translateY(100px);opacity:0;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);";
   toast.innerHTML = 'Item added to your bag';
   document.body.appendChild(toast);
   
