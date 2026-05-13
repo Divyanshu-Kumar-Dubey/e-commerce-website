@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXUS — Premium Lifestyle & Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">NEXUS.</a>
+      <nav class="nav-links">
+        <a href="#tech" class="nav-link">Tech</a>
+        <a href="#fashion" class="nav-link">Fashion</a>
+        <a href="#home" class="nav-link">Home</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="icon-btn cart-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="badge" id="cartBadge" style="display:none">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop" class="hero-bg" alt="Hero Background">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-up">
+      <p class="eyebrow">Redefining Retail</p>
+      <h1 class="hero-title">Elevate Your<br>Everyday.</h1>
+      <p class="hero-subtitle">Discover the pinnacle of modern technology, curated fashion, and premium home essentials.</p>
+      <button class="btn btn-primary">Explore Collection</button>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="section container">
+    <div class="section-header fade-up">
+      <h2>Shop by Category</h2>
+    </div>
+    <div class="category-grid">
+      <div class="category-card fade-up">
+        <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=800&auto=format&fit=crop" alt="Electronics">
+        <div class="category-info">
+          <h3>Premium Tech</h3>
+        </div>
+      </div>
+      <div class="category-card fade-up" style="transition-delay: 0.1s">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=800&auto=format&fit=crop" alt="Fashion">
+        <div class="category-info">
+          <h3>Modern Fashion</h3>
+        </div>
+      </div>
+      <div class="category-card fade-up" style="transition-delay: 0.2s">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=800&auto=format&fit=crop" alt="Home">
+        <div class="category-info">
+          <h3>Living & Home</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRENDING PRODUCTS -->
+  <section class="section container bg-surface">
+    <div class="section-header fade-up">
+      <h2>Trending Now</h2>
+    </div>
+    <div class="products-grid" id="productsGrid">
+      <!-- Injected via JS -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <h2>NEXUS.</h2>
+      <p>© 2026 Nexus Retail. All rights reserved. Curated for excellence.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
